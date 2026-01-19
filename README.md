@@ -1,6 +1,6 @@
-# IIIT Lucknow Mess Management Website
+# College Mess Management Website
 
-A responsive and interactive web application designed to manage mess-related information for IIIT Lucknow students.
+A responsive and interactive web application designed to manage mess-related information for college students.
 
 ## Features
 - Dashboard with live clock and meal highlighting

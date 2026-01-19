@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IIITL Mess Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #e8f5e9, #f1f8f4, #dcedc8);
+      font-family: 'Poppins', sans-serif;
+      color: #2e7d32;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(90deg, #1b5e20, #43a047);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+      filter: drop-shadow(0 0 4px white);
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 500;
+      padding: 8px 15px !important;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* HEADINGS — Menu page style */
+    h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      color: #1d7623;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 10px rgba(76, 175, 80, 0.35);
+      animation: fadeSlide 1s ease-out;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-15px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CAROUSEL */
+    .carousel img {
+      height: 500px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    /* CARDS — Matching Menu Page Cards */
+    .card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      border-left: 6px solid #43a047;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      transition: all 0.35s ease;
+       animation: fadeIn 0.9s ease; 
+    }
+
+     @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    } 
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .meal-img {
+      width: 100%;
+      height: 230px;
+      border-radius: 12px;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .card:hover .meal-img {
+      transform: scale(1.05);
+    }
+
+    .meal-title {
+      font-weight: 600;
+      color: #1b5e20;
+    }
+
+    .meal-time {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #3d3d3d;
+      margin-top: -5px;
+    }
+
+    /* HIGHLIGHT */
+    .highlight {
+      border-left: 6px solid #1b5e20 !important;
+      transform: scale(1.06);
+      box-shadow: 0 0 25px rgba(0,128,0,0.4) !important;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1b5e20;
+      color: white;
+      padding: 35px 0;
+      margin-top: 50px;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* SCROLL TO TOP */
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background:#1b5e20;
+      color:white;
+      border:none;
+      padding:10px 14px;
+      border-radius:50%;
+      display:none;
+      cursor:pointer;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="logo.jpg"> IIITL Mess
+    </a>
+
+    <span id="clock" class="ms-3 text-white fw-bold"></span>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+        <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- GREETING -->
+<h2 class="text-center mt-4" id="greet"></h2>
+
+<!-- CAROUSEL -->
+<div class="container mt-4">
+  <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+    
+    <div class="carousel-inner">
+      
+      <div class="carousel-item active">
+        <img src="mess.jpg" class="d-block w-100" />
+      </div>
+
+      <div class="carousel-item">
+        <img src="mess2.jpg" class="d-block w-100" />
+      </div>
+    <div class="carousel-item active">
+        <img src="mess.jpg" class="d-block w-100" />
+      </div>
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+  </div>
+</div>
+
+
+
+<!-- TODAY'S SPECIAL -->
+<div class="container my-5 text-center">
+  <h2>Today's Special</h2>
+
+  <div class="row mt-4" id="todaysSpecial">
+
+    <div class="col-md-3 mb-4">
+      <div class="card">
+        <img src="breakfast.jpg" class="meal-img mb-3">
+        <h5 class="meal-title">Breakfast</h5>
+        <p class="meal-time">🕒 8:30 AM – 10:30 AM</p>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card">
+        <img src="lunch.jpg" class="meal-img mb-3">
+        <h5 class="meal-title">Lunch</h5>
+        <p class="meal-time">🕒 12:30 PM – 2:30 PM</p>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card">
+        <img src="snack.jpg" class="meal-img mb-3">
+        <h5 class="meal-title">Snacks</h5>
+        <p class="meal-time">🕒 5:00 PM – 6:00 PM</p>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+      <div class="card">
+        <img src="dinner.jpg" class="meal-img mb-3">
+        <h5 class="meal-title">Dinner</h5>
+        <p class="meal-time">🕒 7:30 PM – 9:30 PM</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>@ 2025 IIIT Lucknow Mess Dashboard | Designed By Falcon Web Wizards</p>
+</footer>
+
+<!-- SCROLL BUTTON -->
+<button id="topBtn">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* CURRENT MEAL HIGHLIGHT */
+function highlightCurrentMeal() {
+  const now = new Date();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+  const meals = [
+    { id: 0, start: 510, end: 630 },
+    { id: 1, start: 750, end: 870 },
+    { id: 2, start: 1020, end: 1080 },
+    { id: 3, start: 1170, end: 1290 }
+  ];
+
+  const cards = document.querySelectorAll("#todaysSpecial .card");
+  cards.forEach(c => c.classList.remove("highlight"));
+
+  meals.forEach(meal => {
+    if (currentMinutes >= meal.start && currentMinutes <= meal.end) {
+      cards[meal.id].classList.add("highlight");
+    }
+  });
+}
+highlightCurrentMeal();
+setInterval(highlightCurrentMeal, 60000);
+
+/* LIVE CLOCK */
+function updateClock() {
+  document.getElementById("clock").textContent =
+    new Date().toLocaleTimeString();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+/* GREETING */
+const greet = document.getElementById("greet");
+let hour = new Date().getHours();
+if (hour < 12) greet.innerText = "🌞 Good Morning, IIITL Students!";
+else if (hour < 18) greet.innerText = "🌤 Good Afternoon!";
+else greet.innerText = "🌙 Good Evening!";
+
+/* SCROLL TOP BUTTON */
+const topBtn = document.getElementById("topBtn");
+window.addEventListener("scroll", () => {
+  topBtn.style.display = window.pageYOffset > 200 ? "block" : "none";
+});
+topBtn.addEventListener("click", () =>
+  window.scrollTo({ top: 0, behavior: "smooth" })
+);
+</script>
+
+</body>
+</html>

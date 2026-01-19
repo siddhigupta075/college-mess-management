@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Register | IIITL Mess</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{
+      --green-dark:#1b5e20;
+      --green-mid:#2e7d32;
+      --green-light:#c8e6c9;
+      --bg: #f1f8f4;
+    }
+
+    body{
+      background: linear-gradient(135deg,#e8f5e9,#f1f8f4,#dcedc8);
+      font-family: "Poppins";
+      color: var(--green-dark);
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(90deg,var(--green-dark), #43a047);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .navbar-brand img { height:42px; margin-right:10px; filter: drop-shadow(0 0 4px white); }
+    .nav-link { color: #fff !important; font-weight:500; padding:8px 16px !important; border-radius:8px; transition:0.3s; }
+    .nav-link:hover { background: rgba(255,255,255,0.25); }
+
+    /* MAIN CARD - glassmorphism style */
+    .card-register {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      min-height: 440px;
+      animation: fadeIn 0.9s ease;
+    }
+
+    @media(max-width:900px){ .card-register{ grid-template-columns:1fr; } }
+
+    /* FORM SIDE */
+    .hero-side {
+      padding: 38px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      animation: fadeSlide .7s ease both;
+    }
+    .hero-side h2 { font-weight:700; color: var(--green-mid); }
+    .hero-side p { color:#2f5f2f; opacity:0.9; }
+
+    /* IMAGE SIDE */
+    .image-side {
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(145deg,#e8f5e9,#c8e6c9);
+      padding:20px;
+    }
+    .image-side img {
+      width:100%; max-height:430px; object-fit:contain;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.15));
+      transition: 0.5s ease;
+    }
+    .image-side img:hover { transform: scale(1.04); }
+
+    /* FORM */
+    .form-control, .form-select {
+      border-radius: 12px;
+      border:1px solid #b6d7b6;
+      padding:10px;
+      transition:0.3s;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color:#2e7d32;
+      box-shadow: 0 0 0 2px rgba(46,125,50,0.25);
+    }
+
+    .form-label { font-weight:600; color:#214d21; }
+
+    /* BUTTON */
+    .btn-primary {
+      background: linear-gradient(90deg,var(--green-mid), #38a169);
+      border:none;
+      padding:12px;
+      font-weight:700;
+      border-radius:14px;
+      transition:0.3s;
+      box-shadow:0 8px 18px rgba(46,125,50,0.18);
+    }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.02); }
+
+    .muted { color:#4a6b4a; font-size:.92rem; }
+    
+
+    /* FOOTER */
+    footer {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 34px 0;
+      margin-top: 50px;
+      text-align:center;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.25);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeSlide {
+      from { opacity:0; transform:translateY(12px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; transform:scale(0.98); }
+      to   { opacity:1; transform:scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="logo.jpg"> IIITL Mess
+      </a>
+
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navReg">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navReg">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+          <li class="nav-item"><a class="nav-link active" href="register.html">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- MAIN CARD -->
+  <div class="container my-5">
+    <div class="card-register">
+
+      <!-- LEFT: FORM SIDE -->
+      <div class="hero-side">
+        <h2>Student Registration</h2>
+        <p class="muted">Register for IIITL Mess service — fast, simple & secure.</p>
+
+        <form id="registerform" class="mt-2">
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="form-label">Full Name</label>
+              <input class="form-control" placeholder="Enter Name" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Enrollment No.</label>
+              <input class="form-control" placeholder="10-digit ID" required>
+              <small class="muted">Must be 10 digits</small>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Program</label>
+              <select class="form-select" required>
+                <option disabled selected>Select Program</option>
+                <option>B.Tech</option><option>M.Tech</option>
+                <option>MBA</option><option>M.Sc</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Branch</label>
+              <select class="form-select" required>
+                <option disabled selected>Select Branch</option>
+                <option>IT</option><option>CSE</option>
+                <option>ECE</option><option>AI</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" placeholder="you@iiitl.ac.in" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Hostel / Room</label>
+              <input class="form-control" placeholder="Optional">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Medical / Dietary Notes</label>
+              <input class="form-control" placeholder="e.g., lactose intolerant">
+            </div>
+
+            <div class="col-12 d-grid">
+              <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+
+            <div class="col-12">
+              <small class="muted">Your details will be recorded for mess allotment & billing.</small>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT: IMAGE SIDE -->
+      <div class="image-side">
+        <img src="logo.jpg" alt="register">
+      </div>
+    </div>
+  </div>
+  <div class="container my-5">
+  <h3 class="text-center mb-3">Daily Registration Graph</h3>
+  <canvas id="regChart" height="120"></canvas>
+</div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 IIIT Lucknow Mess Dashboard | Designed By Falcon Web Wizards</p>
+  </footer>
+
+  <script>
+    document.getElementById('registerform').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert("Registration submitted successfully!");
+      this.reset();
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // -------------------------
+  // SAVE REGISTRATION COUNT
+  // -------------------------
+  function saveRegister() {
+    let today = new Date().toISOString().slice(0, 10); // yyyy-mm-dd
+
+    let data = JSON.parse(localStorage.getItem("regData")) || {};
+
+    if (!data[today]) data[today] = 0;
+    data[today]++;
+
+    localStorage.setItem("regData", JSON.stringify(data));
+
+    updateGraph();
+  }
+
+  // -------------------------
+  // CREATE / UPDATE GRAPH
+  // -------------------------
+  let chart;
+
+  function updateGraph() {
+    let data = JSON.parse(localStorage.getItem("regData")) || {};
+
+    let labels = Object.keys(data);
+    let values = Object.values(data);
+
+    if (chart) chart.destroy();
+
+    const ctx = document.getElementById('regChart').getContext('2d');
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Registrations Per Day',
+          data: values,
+          borderWidth: 2,
+          backgroundColor: '#66bb6a',
+          borderColor: '#2e7d32'
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  }
+
+  // Load graph on page open
+  updateGraph();
+
+  // Form submit hook
+  document.getElementById('registerform').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    saveRegister(); // <-- Count +1
+    alert("Registration submitted successfully!");
+
+    this.reset();
+  });
+</script>
+</body>
+</html>

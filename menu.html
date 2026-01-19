@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mess Menu | IIITL</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #e8f5e9, #f1f8f4, #dcedc8);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(90deg, #1b5e20, #43a047);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+      filter: drop-shadow(0 0 4px white);
+    }
+
+    .nav-link { 
+      color: white !important; 
+      font-weight: 500; 
+      margin: 0 5px;
+      padding: 8px 15px !important;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover { 
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* HEADINGS */
+    h2 {
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(76, 175, 80, 0.4);
+      animation: fadeSlide 1s ease-out;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-15px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* FILTER BUTTONS */
+    .filter-btn {
+      border: 2px solid #2e7d32; 
+      color: #2e7d32; 
+      font-weight: 600;
+      border-radius: 25px;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .active-btn {
+      background: linear-gradient(90deg, #2e7d32, #43a047);
+      color: white !important;
+      transform: scale(1.07);
+      box-shadow: 0 4px 10px rgba(46,125,50,0.35);
+    }
+
+    /* MENU CARDS */
+    .menu-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      transition: all 0.35s ease;
+      animation: fadeIn 0.8s ease;
+      border-left: 6px solid #43a047;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .menu-card h4 {
+      font-weight: 700;
+      color: #1b5e20;
+      letter-spacing: 0.5px;
+    }
+
+    .menu-card p {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1b5e20;
+      color: white;
+      padding: 35px 0;
+      margin-top: 40px;
+      font-size: 1rem;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.25);
+    }
+
+    footer p {
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><img src="logo.jpg"> IIITL Mess</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+        <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- REACT ROOT -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">🌿 Weekly Mess Menu</h2>
+
+  <div id="menuApp"></div>
+</div>
+
+<footer class="text-center">
+  <p>@ 2025 IIIT Lucknow Mess Dashboard | Designed By Falcon Web Wizards</p>
+</footer>
+
+<!-- React App -->
+<script type="text/babel">
+  const menuData = {
+    Sunday:     { breakfast:"Aloo Paratha, Curd", lunch:"Paneer Butter Masala, Rice", snacks:"Samosa, Tea", dinner:"Dal Makhani, Roti" },
+    Monday:     { breakfast:"Poha, Tea", lunch:"Rajma Chawal", snacks:"Bread Pakora, Tea", dinner:"Mix Veg, Roti" },
+    Tuesday:    { breakfast:"Idli, Sambhar", lunch:"Kadhi Chawal", snacks:"Biscuit, Tea", dinner:"Chole, Rice" },
+    Wednesday:  { breakfast:"Aloo Puri", lunch:"Dal Fry, Rice", snacks:"Namkeen, Tea", dinner:"Aloo Gobi, Roti" },
+    Thursday:   { breakfast:"Upma, Tea", lunch:"Masoor Dal, Roti", snacks:"Cutlet, Tea", dinner:"Palak Paneer, Rice" },
+    Friday:     { breakfast:"Sandwich, Tea", lunch:"Kadhi Pakoda", snacks:"French Fries, Tea", dinner:"Aloo Beans, Rice" },
+    Saturday:   { breakfast:"Paratha, Tea", lunch:"Chole Bhature", snacks:"Pasta, Tea", dinner:"Dal Tadka, Roti" }
+  };
+
+  const meals = ["breakfast","lunch","snacks","dinner"];
+
+  function App() {
+    const [filter, setFilter] = React.useState("all");
+
+    return (
+      <div>
+        <div className="text-center mb-4">
+          {["all", ...meals].map(type => (
+            <button 
+              key={type} 
+              className={`btn filter-btn m-1 ${filter === type ? "active-btn" : ""}`}
+              onClick={() => setFilter(type)}
+            >
+              {type.toUpperCase()}
+            </button>
+          ))}
+        </div>
+
+        <div className="row g-4">
+          {Object.keys(menuData).map(day => (
+            <div className="col-md-4" key={day}>
+              <div className="menu-card">
+                <h4>{day}</h4>
+                <hr/>
+
+                {(filter === "all" || filter === "breakfast") && (
+                  <p><strong>Breakfast:</strong> {menuData[day].breakfast}</p>
+                )}
+                {(filter === "all" || filter === "lunch") && (
+                  <p><strong>Lunch:</strong> {menuData[day].lunch}</p>
+                )}
+                {(filter === "all" || filter === "snacks") && (
+                  <p><strong>Snacks:</strong> {menuData[day].snacks}</p>
+                )}
+                {(filter === "all" || filter === "dinner") && (
+                  <p><strong>Dinner:</strong> {menuData[day].dinner}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("menuApp")).render(<App />);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
